@@ -1,7 +1,7 @@
 @if(count($announcements) > 0)
 <div class="mx-auto container mt-4">
     
-    <h1 class="text-xl font-bold mb-2">{{ __('Announcements') }}</h1>
+    <h1 class="text-xl font-bold mb-2">{{ __('announcements::announcement.announcements') }}</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach($announcements as $announcement)

@@ -5,7 +5,7 @@
             <div class="bg-background-secondary border border-neutral p-2 rounded-lg">
                 <x-ri-megaphone-fill class="size-5" />
             </div>
-            <h2 class="text-xl font-semibold">{{ __('Announcements') }}</h2>
+            <h2 class="text-xl font-semibold">{{ __('announcements::announcement.announcements') }}</h2>
         </div>
     </div>
     <div class="space-y-4">

@@ -6,10 +6,20 @@ use App\Classes\Extension\Extension;
 use App\Livewire\Auth\Register;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\HtmlString;
 use Paymenter\Extensions\Others\Announcements\Admin\Resources\AnnouncementResource;
 use Paymenter\Extensions\Others\Announcements\Models\Announcement;
+use App\Attributes\ExtensionMeta;
+
+#[ExtensionMeta(
+    name: 'Announcements',
+    description: 'Publish announcements to client area',
+    version: '1.0.0',
+    author: 'Paymenter',
+    icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNi4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iRGlzY29yZF9Ob3RpZmljYXRpb24iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiDQoJIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxMjggMTI4OyINCgkgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojMjMyMzJCO30NCgkuc3Qxe2ZpbGw6I0ZGRkZGRjt9DQo8L3N0eWxlPg0KPGcgaWQ9IlJlY3RhbmdsZSI+DQoJPHBhdGggY2xhc3M9InN0MCIgZD0iTTEwOCwxMjhIMjBDOSwxMjgsMCwxMTksMCwxMDhWMjBDMCw5LDksMCwyMCwwaDg4YzExLjEsMCwyMCw5LDIwLDIwdjg4QzEyOCwxMTksMTE5LDEyOCwxMDgsMTI4eiIvPg0KPC9nPg0KPHBhdGggaWQ9Ik1lZ2FwaG9uZSIgY2xhc3M9InN0MSIgZD0iTTk4LjIsNTUuM1YzMGMwLTIuMy0xLjktNC4yLTQuMi00LjJoLTQuMmMtOC4zLDguMy0yMy44LDEyLjktMzMuNCwxNS4xdjQ1DQoJYzkuNiwyLjIsMjUuMiw2LjgsMzMuNCwxNS4xaDQuMmMyLjMsMCw0LjItMS45LDQuMi00LjJWNzEuNWMzLjYtMC45LDYuMy00LjIsNi4zLTguMVMxMDEuOCw1Ni4yLDk4LjIsNTUuM3ogTTMxLjQsNDIuNQ0KCWMtNC42LDAtOC40LDMuNy04LjQsOC40djI1LjFjMCw0LjYsMy43LDguNCw4LjQsOC40aDQuMmw0LjIsMjAuOWg4LjRWNDIuNUgzMS40eiIvPg0KPC9zdmc+DQo=',
+)]
 
 class Announcements extends Extension
 {
@@ -46,6 +56,7 @@ class Announcements extends Extension
         // Register routes
         require __DIR__ . '/routes/web.php';
         View::addNamespace('announcements', __DIR__ . '/resources/views');
+        Lang::addNamespace('announcements', __DIR__ . '/resources/lang');
 
         // Register livewire
         \Livewire\Livewire::component('announcements.index', \Paymenter\Extensions\Others\Announcements\Livewire\Announcements\Index::class);
@@ -58,7 +69,7 @@ class Announcements extends Extension
             }
 
             return [
-                'name' => 'Announcements',
+                'name' => __('announcements::announcement.announcements'),
                 'route' => 'announcements.index',
                 'icon' => 'ri-megaphone',
                 'separator' => true,
